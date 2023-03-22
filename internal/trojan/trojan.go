@@ -24,7 +24,7 @@ func (tc *TrojanController) Start() error {
 		return ErrAlreadyRunning
 	}
 
-	tc.cmd = exec.Command(paths.ExecPath, "-c", paths.ConfigPath)
+	tc.cmd = exec.Command(paths.ExecPath, "-config", paths.ConfigPath)
 	err := tc.cmd.Start()
 	if err != nil {
 		tc.cmd = nil
