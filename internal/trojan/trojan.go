@@ -23,9 +23,8 @@ func (tc *TrojanController) Start() error {
 	if tc.cmd != nil {
 		return ErrAlreadyRunning
 	}
-	executablePath := "/tmp/trojan-go"
 
-	tc.cmd = exec.Command(executablePath, "-c", paths.ConfigPath)
+	tc.cmd = exec.Command(paths.ExecPath, "-c", paths.ConfigPath)
 	err := tc.cmd.Start()
 	if err != nil {
 		tc.cmd = nil

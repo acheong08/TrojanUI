@@ -2,14 +2,16 @@ package main
 
 import (
 	"TrojanUI/internal/files"
+	"TrojanUI/internal/trojan"
 	"context"
-	"fmt"
 )
 
 // App struct
 type App struct {
 	ctx            context.Context
 	downloadStatus *files.DownloadStatus
+	vpnActive      bool
+	trojanInstance *trojan.TrojanController
 }
 
 // NewApp creates a new App application struct
@@ -23,11 +25,7 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
-}
-
+// / Initializations
 func (a *App) RequiresUpdate() bool {
 	update_required := files.RequireExecutableUpdate()
 	return update_required
@@ -49,13 +47,26 @@ func (a *App) DownloadStatus() float64 {
 	return a.downloadStatus.Progress()
 }
 
-func (a *App) CheckConfig() bool {
-	config, err := files.ReadConfig()
-	if err != nil {
+/// VPN control
+
+func (a *App) StartVPN() bool {
+	if a.vpnActive {
+		return true
+	}
+	if a.trojanInstance == nil {
+		a.trojanInstance = trojan.New()
+	}
+	if a.trojanInstance.Check() != nil {
 		return false
 	}
-	if config == "" {
-		return false
+	err := a.trojanInstance.Start()
+	return err == nil
+}
+
+func (a *App) StopVPN() bool {
+	if !a.vpnActive {
+		return true
 	}
-	return true
+	err := a.trojanInstance.Stop()
+	return err == nil
 }
