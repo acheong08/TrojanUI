@@ -9,7 +9,7 @@
   let buttonAction = "";
   let vpnInstalled = false;
   let vpnActive = false;
-  let vpnContainerBgColor = "#b44141";
+  let vpnContainerBgColor = "#BF4630";
 
   async function initialize() {
     const result = await RequiresUpdate();
@@ -23,7 +23,7 @@
   async function handleClick() {
     if (buttonAction === "VPN") {
       vpnActive = !vpnActive;
-      vpnContainerBgColor = vpnActive ? "#447a47" : "#b44141";
+      vpnContainerBgColor = vpnActive ? "#238C47" : "#BF4630";
     } else if (buttonAction === "Install") {
       console.log("Installing VPN");
       const result = await DownloadVPN();
