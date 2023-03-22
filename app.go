@@ -60,6 +60,7 @@ func (a *App) StartVPN() bool {
 		return false
 	}
 	err := a.trojanInstance.Start()
+	a.vpnActive = err == nil
 	return err == nil
 }
 
