@@ -3,6 +3,8 @@
     RequiresUpdate,
     DownloadVPN,
     DownloadStatus,
+    StartVPN,
+    StopVPN,
   } from "../wailsjs/go/main/App.js";
 
   let buttonText = "Loading";
@@ -22,6 +24,15 @@
 
   async function handleClick() {
     if (buttonAction === "VPN") {
+      let success;
+      if (vpnActive) {
+        success = await StopVPN();
+      } else {
+        success = await StartVPN();
+      }
+      if (!success) {
+        return;
+      }
       vpnActive = !vpnActive;
       vpnContainerBgColor = vpnActive ? "#238C47" : "#BF4630";
     } else if (buttonAction === "Install") {
