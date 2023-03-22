@@ -1,5 +1,9 @@
 <script>
-  import { RequiresUpdate } from "../wailsjs/go/main/App.js";
+  import {
+    RequiresUpdate,
+    DownloadVPN,
+    DownloadProgress,
+  } from "../wailsjs/go/main/App.js";
 
   let buttonText = "";
 
@@ -30,6 +34,16 @@
         document.querySelector(".vpn-container").style.backgroundColor =
           "#b44141";
       }
+    } else if (buttonAction == "Install") {
+      // Install VPN
+      console.log("Installing VPN");
+      DownloadVPN().then((result) => {
+        console.log(result);
+        if (result) {
+          buttonText = "VPN";
+          buttonAction = "VPN";
+        }
+      });
     }
   }
 </script>
