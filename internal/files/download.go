@@ -21,6 +21,9 @@ func (ds *DownloadStatus) Write(p []byte) (int, error) {
 }
 
 func (ds *DownloadStatus) Progress() float64 {
+	if ds.TotalSize == 0 {
+		return 0
+	}
 	return float64(ds.Downloaded) / float64(ds.TotalSize) * 100
 }
 

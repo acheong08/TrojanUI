@@ -1,5 +1,9 @@
 <script>
-  import { RequiresUpdate, DownloadVPN } from "../wailsjs/go/main/App.js";
+  import {
+    RequiresUpdate,
+    DownloadVPN,
+    DownloadStatus,
+  } from "../wailsjs/go/main/App.js";
 
   let buttonText = "";
 
@@ -37,9 +41,25 @@
       DownloadVPN().then((result) => {
         console.log(result);
         if (result) {
-          buttonText = "Downloading...";
+          buttonText = "Downloading";
           buttonAction = "";
         }
+        // Keep checking if download status
+        let interval = setInterval(() => {
+          DownloadStatus().then((result) => {
+            if (result == 100) {
+              buttonText = "VPN";
+              buttonAction = "VPN";
+              console.log("Done");
+              clearInterval(interval);
+              return;
+            }
+            // Round result to 2 decimal places
+            result = Math.round((result + Number.EPSILON) * 100) / 100;
+            buttonText = result + "%";
+            console.log(result);
+          });
+        }, 1000);
       });
     }
   }
