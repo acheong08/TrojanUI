@@ -31,6 +31,7 @@
         success = await StartVPN();
       }
       if (!success) {
+        buttonText = "Error";
         return;
       }
       vpnActive = !vpnActive;
