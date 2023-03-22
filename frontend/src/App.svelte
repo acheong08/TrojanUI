@@ -1,9 +1,5 @@
 <script>
-  import {
-    RequiresUpdate,
-    DownloadVPN,
-    DownloadProgress,
-  } from "../wailsjs/go/main/App.js";
+  import { RequiresUpdate, DownloadVPN } from "../wailsjs/go/main/App.js";
 
   let buttonText = "";
 
