@@ -42,6 +42,13 @@ func (a *App) DownloadVPN() string {
 	return "loading"
 }
 
+func (a *App) DownloadStatus() float64 {
+	if a.downloadStatus == nil {
+		return 0
+	}
+	return a.downloadStatus.Progress()
+}
+
 func (a *App) CheckConfig() bool {
 	config, err := files.ReadConfig()
 	if err != nil {

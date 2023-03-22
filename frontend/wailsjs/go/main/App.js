@@ -6,6 +6,10 @@ export function CheckConfig() {
   return window['go']['main']['App']['CheckConfig']();
 }
 
+export function DownloadStatus() {
+  return window['go']['main']['App']['DownloadStatus']();
+}
+
 export function DownloadVPN() {
   return window['go']['main']['App']['DownloadVPN']();
 }

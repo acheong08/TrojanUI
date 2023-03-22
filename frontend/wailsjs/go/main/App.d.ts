@@ -3,6 +3,8 @@
 
 export function CheckConfig():Promise<boolean>;
 
+export function DownloadStatus():Promise<number>;
+
 export function DownloadVPN():Promise<string>;
 
 export function Greet(arg1:string):Promise<string>;

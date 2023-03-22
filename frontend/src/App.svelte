@@ -13,6 +13,7 @@
       buttonText = "Install";
       buttonAction = "Install";
     } else {
+      buttonText = "VPN";
       buttonAction = "VPN";
     }
   });
@@ -36,8 +37,8 @@
       DownloadVPN().then((result) => {
         console.log(result);
         if (result) {
-          buttonText = "VPN";
-          buttonAction = "VPN";
+          buttonText = "Downloading...";
+          buttonAction = "";
         }
       });
     }
