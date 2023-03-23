@@ -3,20 +3,12 @@
 package system
 
 import (
-	"errors"
 	"os"
 	"os/exec"
 )
 
-var (
-	ErrGnomeNotFound = errors.New("gnome not found")
-	ErrInvalidAction = errors.New("invalid action")
-	CMDStartProxy    = "start"
-	CMDStopProxy     = "stop"
-)
-
-// ConfigureGnomeProxy configures the GNOME proxy settings
-func ConfigureGnomeProxy(action string) error {
+// ConfigureProxy configures the GNOME proxy settings
+func ConfigureProxy(action string) error {
 	if action == CMDStartProxy {
 		// Detect if GNOME is running
 		if !detectGnome() {

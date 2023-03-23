@@ -2,8 +2,10 @@ package main
 
 import (
 	"TrojanUI/internal/files"
+	"TrojanUI/internal/system"
 	"TrojanUI/internal/trojan"
 	"context"
+	"runtime"
 )
 
 // App struct
@@ -61,7 +63,10 @@ func (a *App) StartVPN() bool {
 	}
 	err := a.trojanInstance.Start()
 	a.vpnActive = err == nil
-	return err == nil
+	if a.vpnActive && runtime.GOOS != "windows" {
+		system.ConfigureProxy(system.CMDStartProxy)
+	}
+	return a.vpnActive
 }
 
 func (a *App) StopVPN() bool {
@@ -70,5 +75,8 @@ func (a *App) StopVPN() bool {
 	}
 	err := a.trojanInstance.Stop()
 	a.vpnActive = err != nil
-	return err == nil
+	if !a.vpnActive && runtime.GOOS != "windows" {
+		system.ConfigureProxy(system.CMDStopProxy)
+	}
+	return a.vpnActive
 }
