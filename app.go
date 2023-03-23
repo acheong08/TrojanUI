@@ -91,3 +91,8 @@ func (a *App) StopVPN() bool {
 	}
 	return !a.vpnActive
 }
+
+// / Config
+func (a *App) WriteConfig(config string) bool {
+	return files.WriteConfig(config) == nil
+}

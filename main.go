@@ -17,9 +17,9 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "trojanUI",
+		Title:  "TrojanUI",
 		Width:  300,
-		Height: 350,
+		Height: 370,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},

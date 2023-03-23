@@ -10,3 +10,5 @@ export function RequiresUpdate():Promise<boolean>;
 export function StartVPN():Promise<boolean>;
 
 export function StopVPN():Promise<boolean>;
+
+export function WriteConfig(arg1:string):Promise<boolean>;

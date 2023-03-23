@@ -5,6 +5,7 @@
     DownloadStatus,
     StartVPN,
     StopVPN,
+    WriteConfig,
   } from "../wailsjs/go/main/App.js";
 
   let buttonText = "Loading";
@@ -62,6 +63,14 @@
       }
     }
   }
+  async function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (!file) {
+      return;
+    }
+    const fileContents = await file.text();
+    await WriteConfig(fileContents);
+  }
 </script>
 
 <main>
@@ -77,6 +86,15 @@
       <div class="power-button">
         <span class="button-text">{buttonText}</span>
       </div>
+    </div>
+    <div class="upload-container">
+      <input
+        type="file"
+        id="file-upload"
+        class="file-upload"
+        on:change={handleFileUpload}
+      />
+      <label for="file-upload" class="file-upload-button">Upload Config</label>
     </div>
   </div>
 </main>

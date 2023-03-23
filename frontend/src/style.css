@@ -81,3 +81,28 @@ body {
     background-color: #b44141;
     color: white;
   }
+  .upload-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .file-upload {
+    display: none;
+  }
+
+  .file-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #51628e;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .file-upload-button:hover {
+    background-color: #1C6E3C;
+  }

@@ -21,3 +21,7 @@ export function StartVPN() {
 export function StopVPN() {
   return window['go']['main']['App']['StopVPN']();
 }
+
+export function WriteConfig(arg1) {
+  return window['go']['main']['App']['WriteConfig'](arg1);
+}
