@@ -27,6 +27,10 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
+func (a *App) shutdown(ctx context.Context) {
+	a.StopVPN()
+}
+
 // / Initializations
 func (a *App) RequiresUpdate() bool {
 	update_required := files.RequireExecutableUpdate()
