@@ -34,6 +34,7 @@
         buttonText = "Error";
         return;
       }
+      buttonText = "VPN";
       vpnActive = !vpnActive;
       vpnContainerBgColor = vpnActive ? "#238C47" : "#BF4630";
     } else if (buttonAction === "Install") {

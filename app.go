@@ -74,9 +74,16 @@ func (a *App) StopVPN() bool {
 		return true
 	}
 	err := a.trojanInstance.Stop()
+	if err != nil {
+		println(err.Error())
+		return false
+	}
 	a.vpnActive = err != nil
 	if !a.vpnActive && runtime.GOOS != "windows" {
-		system.ConfigureProxy(system.CMDStopProxy)
+		err = system.ConfigureProxy(system.CMDStopProxy)
+		if err != nil {
+			println(err.Error())
+		}
 	}
-	return a.vpnActive
+	return !a.vpnActive
 }
