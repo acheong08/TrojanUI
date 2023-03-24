@@ -19,11 +19,11 @@ func ConfigureProxy(action string) error {
 		if err != nil {
 			return err
 		}
-		err = exec.Command("gsettings", "set", "org.gnome.system.proxy.http", "host", "127.0.0.1").Run()
+		err = exec.Command("gsettings", "set", "org.gnome.system.proxy.socks", "host", "127.0.0.1").Run()
 		if err != nil {
 			return err
 		}
-		err = exec.Command("gsettings", "set", "org.gnome.system.proxy.http", "port", "1080").Run()
+		err = exec.Command("gsettings", "set", "org.gnome.system.proxy.socks", "port", "1080").Run()
 		if err != nil {
 			return err
 		}
