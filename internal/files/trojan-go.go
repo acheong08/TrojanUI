@@ -18,7 +18,7 @@ func init() {
 	case "linux":
 		goos = "Linux"
 	case "windows":
-		goos = "Windows"
+		goos = "Windows.exe"
 	}
 }
 
