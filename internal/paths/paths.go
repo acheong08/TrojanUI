@@ -4,6 +4,7 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"runtime"
 )
 
 var BaseDir string
@@ -17,6 +18,10 @@ func init() {
 	// Make sure the base directory exists
 	os.MkdirAll(BaseDir, 0755)
 	ConfigPath = filepath.Join(BaseDir, "config.json")
-	ExecPath = filepath.Join(BaseDir, "trojan-go")
+	if runtime.GOOS == "windows" {
+		ExecPath = filepath.Join(BaseDir, "trojan-go.exe")
+	} else {
+		ExecPath = filepath.Join(BaseDir, "trojan-go")
+	}
 	HashPath = filepath.Join(BaseDir, "trojan-go.md5")
 }
