@@ -67,9 +67,7 @@ func (a *App) StartVPN() bool {
 	}
 	err := a.trojanInstance.Start()
 	a.vpnActive = err == nil
-	if a.vpnActive && runtime.GOOS != "windows" {
-		system.ConfigureProxy(system.CMDStartProxy)
-	}
+	system.ConfigureProxy(system.CMDStartProxy)
 	return a.vpnActive
 }
 
