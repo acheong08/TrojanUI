@@ -2,10 +2,12 @@ package files
 
 import (
 	"TrojanUI/internal/paths"
+	"context"
 	"io"
 	"net/http"
 	"os"
 	"runtime"
+	"time"
 )
 
 var goos string
@@ -23,8 +25,11 @@ func init() {
 }
 
 func RequireExecutableUpdate() bool {
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
 	// Fetch the latest hash from the server
-	response, err := http.Get("https://huggingface.co/acheong08/files/raw/main/trojan/trojan-" + goos + ".md5")
+	req, _ := http.NewRequestWithContext(ctx, "GET", "https://huggingface.co/acheong08/files/raw/main/trojan/trojan-"+goos+".md5", nil)
+	response, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return false
 	}
